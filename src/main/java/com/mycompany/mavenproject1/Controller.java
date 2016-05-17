@@ -6,6 +6,7 @@
 package com.mycompany.mavenproject1;
 
 import com.mycompany.interfaces.Mapper;
+import java.util.Calendar;
 
 /**
  *
@@ -18,10 +19,16 @@ public class Controller {
     public Controller(Mapper mapper) {
         this.mapper = mapper;
     }
-
+  public Controller() {
+      
+    }
     public User register(String cpr, String name, String pw) {
 
         return mapper.registerUser(cpr, name, pw);
+    }
+   public Book borrow(String cpr, String ISBN) {
+
+      return mapper.borrow(cpr, ISBN);
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package com.mycompany.interfaces;
 
+import com.mycompany.mavenproject1.Book;
 import com.mycompany.mavenproject1.User;
 
 /**
@@ -15,5 +16,7 @@ import com.mycompany.mavenproject1.User;
 public interface Mapper {
     //insert user in db. 
     User registerUser(String cpr,String name, String pw);
+    //set borrower cpr and due date in db. 
+    Book borrow(String cpr,String ISBN);
     
 }

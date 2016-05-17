@@ -6,8 +6,12 @@
 
 import static org.mockito.Mockito.*;
 import com.mycompany.interfaces.Mapper;
+import com.mycompany.mavenproject1.Book;
 import com.mycompany.mavenproject1.Controller;
 import com.mycompany.mavenproject1.User;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -58,8 +62,30 @@ public class TestLibrary {
         assertEquals(name, result.getName());
         assertEquals(pw, result.getPw());
     }
+
     @Test
-    public void testBorrowUser(){
-    
+    public void testBorrowUser() {
+        String cpr = "12345";
+        String ISBN = "67890";
+        
+        Date todayplus7 = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(todayplus7);
+        cal.add(Calendar.DATE, 7);
+        todayplus7 = cal.getTime();
+        SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
+        
+        when(mapperMock.borrow(cpr, ISBN)).thenReturn(new Book(ISBN, "some title", cpr,todayplus7));
+        Controller c = new Controller(mapperMock);
+        Book b = c.borrow(cpr, ISBN);
+        
+        verify(mapperMock).borrow(Matchers.eq(cpr), Matchers.eq(ISBN));
+        String todayString = ft.format(todayplus7);
+        String resultString = ft.format(b.getDueDate());
+
+        assertEquals(ISBN, b.getISBN());
+        assertEquals(cpr, b.getBorrowedByCpr());
+        assertEquals(todayString, resultString);
+
     }
 }
