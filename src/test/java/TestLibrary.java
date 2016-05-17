@@ -67,6 +67,7 @@ public class TestLibrary {
     public void testBorrowUser() {
         String cpr = "12345";
         String ISBN = "67890";
+        String title = "some title";
         
         Date todayplus7 = new Date();
         Calendar cal = Calendar.getInstance();
@@ -75,7 +76,7 @@ public class TestLibrary {
         todayplus7 = cal.getTime();
         SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
         
-        when(mapperMock.borrow(cpr, ISBN)).thenReturn(new Book(ISBN, "some title", cpr,todayplus7));
+        when(mapperMock.borrow(cpr, ISBN)).thenReturn(new Book(ISBN, title, cpr,todayplus7));
         Controller c = new Controller(mapperMock);
         Book b = c.borrow(cpr, ISBN);
         
@@ -86,6 +87,7 @@ public class TestLibrary {
         assertEquals(ISBN, b.getISBN());
         assertEquals(cpr, b.getBorrowedByCpr());
         assertEquals(todayString, resultString);
+        assertEquals(title, b.getTitle());
 
     }
 }
