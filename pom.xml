@@ -34,7 +34,17 @@
     
     <reporting>
         <plugins>
-
+             <!--
+            Fix for warning "Unable to locate Test Source XRef to link to - DISABLED"
+            "The JXR Plugin generates a cross-reference of the project's sources. 
+            Below are the different goals and configurations for the plugin."
+            http://maven.apache.org/jxr/maven-jxr-plugin/usage.html        
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>

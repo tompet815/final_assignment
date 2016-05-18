@@ -12,38 +12,26 @@ import com.mycompany.mavenproject1.User;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Matchers;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  *
  * @author Tomoe
  */
+@RunWith(MockitoJUnitRunner.class)
 public class TestLibrary {
 
+    @Mock
     private static Mapper mapperMock;
 
-    @BeforeClass
-    public static void setUpClass() {
-        mapperMock = mock(Mapper.class);
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+    @InjectMocks
+    private static Controller c;
 
     @Test
     public void testRegisterUser() {
@@ -53,7 +41,6 @@ public class TestLibrary {
 
         when(mapperMock.registerUser(cpr, name, pw)).thenReturn(new User(cpr, name, pw));
 
-        Controller c = new Controller(mapperMock);
         User result = c.register(cpr, name, pw);
 
         verify(mapperMock).registerUser(Matchers.eq(cpr), Matchers.eq(name), Matchers.eq(pw));
@@ -64,22 +51,22 @@ public class TestLibrary {
     }
 
     @Test
-    public void testBorrowUser() {
+    public void testBorrow() {
         String cpr = "12345";
         String ISBN = "67890";
         String title = "some title";
-        
+
         Date todayplus7 = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(todayplus7);
         cal.add(Calendar.DATE, 7);
         todayplus7 = cal.getTime();
         SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
-        
-        when(mapperMock.borrow(cpr, ISBN)).thenReturn(new Book(ISBN, title, cpr,todayplus7));
-        Controller c = new Controller(mapperMock);
+
+        when(mapperMock.borrow(cpr, ISBN)).thenReturn(new Book(ISBN, title, cpr, todayplus7));
+
         Book b = c.borrow(cpr, ISBN);
-        
+
         verify(mapperMock).borrow(Matchers.eq(cpr), Matchers.eq(ISBN));
         String todayString = ft.format(todayplus7);
         String resultString = ft.format(b.getDueDate());
@@ -87,6 +74,25 @@ public class TestLibrary {
         assertEquals(ISBN, b.getISBN());
         assertEquals(cpr, b.getBorrowedByCpr());
         assertEquals(todayString, resultString);
+        assertEquals(title, b.getTitle());
+
+    }
+
+    @Test
+    public void testReturn() {
+
+        String ISBN = "67890";
+        String title = "some title";
+
+        when(mapperMock.returnBook(ISBN)).thenReturn(new Book(ISBN, title, "", null));
+        Controller c = new Controller(mapperMock);
+        Book b = c.returnBook(ISBN);
+
+        verify(mapperMock).returnBook(Matchers.eq(ISBN));
+
+        assertEquals(ISBN, b.getISBN());
+        assertEquals("", b.getBorrowedByCpr());
+        assertEquals(null, b.getDueDate());
         assertEquals(title, b.getTitle());
 
     }

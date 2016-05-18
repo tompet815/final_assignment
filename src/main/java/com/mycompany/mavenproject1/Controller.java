@@ -19,16 +19,23 @@ public class Controller {
     public Controller(Mapper mapper) {
         this.mapper = mapper;
     }
-  public Controller() {
-      
+
+    public Controller() {
+
     }
+
     public User register(String cpr, String name, String pw) {
 
         return mapper.registerUser(cpr, name, pw);
     }
-   public Book borrow(String cpr, String ISBN) {
 
-      return mapper.borrow(cpr, ISBN);
+    public Book borrow(String cpr, String ISBN) {
+
+        return mapper.borrow(cpr, ISBN);
     }
 
+    public Book returnBook(String ISBN) {
+
+        return mapper.returnBook(ISBN);
+    }
 }

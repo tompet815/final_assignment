@@ -18,5 +18,7 @@ public interface Mapper {
     User registerUser(String cpr,String name, String pw);
     //set borrower cpr and due date in db. 
     Book borrow(String cpr,String ISBN);
+    //remove borrower cpr and reset due date in db. 
+    Book returnBook(String ISBN);
     
 }
