@@ -24,7 +24,6 @@ import org.junit.gen5.api.extension.InstancePostProcessor;
 import org.junit.gen5.api.extension.MethodInvocationContext;
 import org.junit.gen5.api.extension.MethodParameterResolver;
 import org.junit.gen5.api.extension.ParameterResolutionException;
-import org.junit.gen5.api.extension.TestExtensionContext;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 

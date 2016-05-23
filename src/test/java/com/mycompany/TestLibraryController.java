@@ -47,6 +47,7 @@ public class TestLibraryController {
         User result = c.register(cpr, name, pw);
 
         verify(mapperMock).registerUser(Matchers.eq(cpr), Matchers.eq(name), Matchers.eq(pw));
+        //these assertions are not needed, but as the method is returning an User object, I am checking if mock is returning the object.  
         assertNotNull(result);
         assertEquals(cpr, result.getCpr());
         assertEquals(name, result.getName());
@@ -71,6 +72,8 @@ public class TestLibraryController {
         Book b = c.borrow(cpr, ISBN);
 
         verify(mapperMock).borrow(Matchers.eq(cpr), Matchers.eq(ISBN));
+        //these assertions are not needed, but as the method is returning an User object, I am checking if mock is returning the object.  
+
         String todayString = ft.format(todayplus7);
         String resultString = ft.format(b.getDueDate());
 
@@ -92,7 +95,7 @@ public class TestLibraryController {
         Book b = c.returnBook(ISBN);
 
         verify(mapperMock).returnBook(Matchers.eq(ISBN));
-
+        //these assertions are not needed, but as the method is returning an User object, I am checking if mock is returning the object.  
         assertEquals(ISBN, b.getISBN());
         assertEquals("", b.getBorrowedByCpr());
         assertEquals(null, b.getDueDate());

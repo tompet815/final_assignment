@@ -13,11 +13,8 @@ import java.util.ArrayList;
 import static org.junit.gen5.api.Assertions.*;
 import org.junit.gen5.api.DisplayName;
 import org.junit.gen5.api.Test;
-import org.junit.gen5.api.TestInfo;
 import org.junit.gen5.api.extension.ExtendWith;
-import org.junit.gen5.api.extension.TestExtensionContext;
 import org.mockito.Matchers;
-import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -49,27 +46,28 @@ public class TestWithJUnit5 {
         );
     }
 
-     @Test
+    @Test
     @DisplayName("Test getFirstValue from empty ArrayList")
     public void testGetFirstValue() {
-        ArrayList<Object> array=new ArrayList();
-         TestClassForJUnit5 testClass=new TestClassForJUnit5();
-       
-       Throwable exception = expectThrows(IndexOutOfBoundsException.class, ()-> {
-           testClass.getFirstValue(array);
+        ArrayList<Object> array = new ArrayList();
+        TestClassForJUnit5 testClass = new TestClassForJUnit5();
+
+        expectThrows(IndexOutOfBoundsException.class, () -> {
+            testClass.getFirstValue(array);
         });
-      
+
     }
-     @Test
+
+    @Test
     @DisplayName("Test custom exception message")
     public void testCustomExceptionMessage() {
-     
-         TestClassForJUnit5 testClass=new TestClassForJUnit5();
-       
-       Throwable exception = expectThrows(NullPointerException.class, ()-> {
-           testClass.throwExeption();
+
+        TestClassForJUnit5 testClass = new TestClassForJUnit5();
+
+        Throwable exception = expectThrows(NullPointerException.class, () -> {
+            testClass.throwExeption();
         });
         assertEquals("This is a custom message", exception.getMessage());
     }
-    
+
 }
