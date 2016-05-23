@@ -1,0 +1,4 @@
+com\mycompany\InjectMock.class
+com\mycompany\TestLibraryController.class
+com\mycompany\MockitoExtension.class
+com\mycompany\TestWithJUnit5.class

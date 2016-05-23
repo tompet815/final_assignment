@@ -5,8 +5,8 @@
  */
 package com.mycompany.interfaces;
 
-import com.mycompany.mavenproject1.Book;
-import com.mycompany.mavenproject1.User;
+import com.mycompany.mavenproject.Book;
+import com.mycompany.mavenproject.User;
 
 /**
  *

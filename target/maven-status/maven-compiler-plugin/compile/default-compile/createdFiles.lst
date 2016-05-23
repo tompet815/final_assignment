@@ -1,0 +1,6 @@
+com\mycompany\mavenproject\RunMain.class
+com\mycompany\interfaces\Mapper.class
+com\mycompany\mavenproject\Book.class
+com\mycompany\mavenproject\User.class
+com\mycompany\mavenproject\Controller.class
+com\mycompany\mavenproject\TestClassForJUnit5.class

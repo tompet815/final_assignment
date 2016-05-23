@@ -9,6 +9,10 @@
             <goals>
                 <goal>install</goal>
                 <goal>surefire-report:report</goal>
+                <goal>site</goal>
+                <goal>-DgenerateReports=false</goal>
+                
+                
             </goals>
         </action>
     </actions>

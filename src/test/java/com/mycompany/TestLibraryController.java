@@ -1,3 +1,5 @@
+package com.mycompany;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,9 +8,9 @@
 
 import static org.mockito.Mockito.*;
 import com.mycompany.interfaces.Mapper;
-import com.mycompany.mavenproject1.Book;
-import com.mycompany.mavenproject1.Controller;
-import com.mycompany.mavenproject1.User;
+import com.mycompany.mavenproject.Book;
+import com.mycompany.mavenproject.Controller;
+import com.mycompany.mavenproject.User;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,8 +26,9 @@ import org.mockito.runners.MockitoJUnitRunner;
  *
  * @author Tomoe
  */
+
 @RunWith(MockitoJUnitRunner.class)
-public class TestLibrary {
+public class TestLibraryController {
 
     @Mock
     private static Mapper mapperMock;
